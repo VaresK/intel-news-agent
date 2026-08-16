@@ -1,0 +1,38 @@
+name: Daily Intelligence Picks
+
+on:
+  schedule:
+    # Runs at 6:00 UTC every day. Adjust the hour to fit your timezone.
+    - cron: "0 6 * * *"
+  workflow_dispatch: # lets you also trigger it manually from GitHub's UI, for testing
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # allows the workflow to push the updated index.html back to the repo
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the news filtering script
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node filter-news-v2.js
+
+      - name: Commit and push the updated page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Update daily picks" || echo "No changes to commit"
+          git push
