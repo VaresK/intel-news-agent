@@ -140,7 +140,7 @@ async function main() {
   const picks = parsePicks(rawPicks);
 
   const html = buildHtml(picks);
-  const outputPath = path.join(__dirname, "daily-picks.html");
+  const outputPath = path.join(__dirname, "index.html");
   fs.writeFileSync(outputPath, html);
 
   console.log(`Done. Open this file in your browser:\n${outputPath}`);
