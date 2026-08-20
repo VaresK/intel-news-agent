@@ -29,9 +29,14 @@ For each significant claim you find, return it in this exact format — do not w
 CLAIM: [one sentence stating the claim factually]
 SOURCE: [publication name]
 URL: [direct link]
+PUBLISHED: [date the source article was published]
 SOURCE_TYPE: [investigative journalism / official statement / state media / think tank / wire service]
 CREDIBILITY: [High / Medium / Low]
 TOPIC: [Russian Special Services / Russia vs NATO / OSINT]
+
+Only include claims from articles or reports published within the last 24-48 hours. If you find something significant but it's older than 48 hours, do not include it — note in your search that you're specifically looking for the most recent developments, not historical context.
+
+For each claim, include the publish date of the source article. If you cannot determine when something was published, do not include it.
 
 Only include claims that are genuinely newsworthy and specific. Drop vague or filler observations. Aim for 5-10 claims total across all topics. Leave a blank line between each claim block.`;
 
